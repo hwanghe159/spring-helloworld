@@ -1,4 +1,4 @@
-package wooteco.helloworld.jdbc;
+package wooteco.helloworld.jdbc.simple;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
