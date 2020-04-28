@@ -1,10 +1,14 @@
 package wooteco.helloworld.jdbc;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+@Table("user")
 public class User {
+    @Id
     private Long id;
     private String name;
     private LocalDateTime createAt;
@@ -29,6 +33,10 @@ public class User {
 
     public LocalDateTime getCreateAt() {
         return createAt;
+    }
+
+    public String getCreateAtFormat(){
+        return createAt.format(DateTimeFormatter.ISO_DATE_TIME);
     }
 
     public LocalDateTime getUpdateAt() {

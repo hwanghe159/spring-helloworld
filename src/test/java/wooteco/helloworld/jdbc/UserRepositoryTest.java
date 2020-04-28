@@ -12,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @DataJdbcTest
@@ -61,14 +60,14 @@ public class UserRepositoryTest {
     @DisplayName("수정")
     @Test
     public void update() {
-        User savedUser = userRepository.save(new User(NAME));
+        User savedUser = userRepository.save(new User(NAME));//브라운 DB저장
         savedUser.update(new User(NEW_NAME));
-        User updatedUser = userRepository.save(savedUser);
+        User updatedUser = userRepository.save(savedUser);//뉴브라운 DB저장
 
-        User persistUser = userRepository.findById(updatedUser.getId()).orElseThrow(RuntimeException::new);
+        User persistUser = userRepository.findById(updatedUser.getId()).orElseThrow(RuntimeException::new);//DB에 저장된 뉴브라운
 
         assertThat(persistUser.getName()).isEqualTo(NEW_NAME);
-        assertThat(persistUser.getCreateAt()).isEqualTo(savedUser.getCreateAt());
+        assertThat(persistUser.getCreateAtFormat()).isEqualTo(savedUser.getCreateAtFormat());
     }
 
     @DisplayName("제거")

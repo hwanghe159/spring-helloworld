@@ -10,8 +10,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Override
     List<User> findAll();
 
-    /**
-     * select count(1) from user where name = :name
-     */
-    int countByName(String name);
+    @Query("select count(1) from user where name = :name")
+    int countByName(@Param("name") String name);
 }
